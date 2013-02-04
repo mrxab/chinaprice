@@ -12,7 +12,7 @@ chinaPrice.grid.Formats = function(config) {
 		,remoteSort: true
 		,columns: [
 			{header: _('id'),dataIndex: 'id',width: 70, sortable: true}
-			,{header: _('name'),dataIndex: 'name',width: 200, sortable: true}
+			,{header: _('chinaprice.format_name'),dataIndex: 'name',width: 200, sortable: true}
 		]
 		,tbar: [{
 			text: _('chinaprice.format_create')
@@ -102,7 +102,7 @@ chinaPrice.window.CreateCatalog = function(config) {
 		,url: chinaPrice.config.connector_url
 		,action: 'mgr/format/create'
 		,fields: [
-			{xtype: 'textfield',fieldLabel: _('name'),name: 'name',id: 'chinaprice-'+this.ident+'-name',width: 300}
+			{xtype: 'textfield',fieldLabel: _('chinaprice.format_name'),name: 'name',id: 'chinaprice-'+this.ident+'-name',width: 300}
 		]
 	});
 	chinaPrice.window.CreateCatalog.superclass.constructor.call(this,config);
@@ -123,7 +123,7 @@ chinaPrice.window.UpdateCatalog = function(config) {
 		,action: 'mgr/format/update'
 		,fields: [
 			{xtype: 'hidden',name: 'id',id: 'chinaprice-'+this.ident+'-id'}
-			,{xtype: 'textfield',fieldLabel: _('name'),name: 'name',id: 'chinaprice-'+this.ident+'-name',width: 300}
+			,{xtype: 'textfield',fieldLabel: _('chinaprice.format_name'),name: 'name',id: 'chinaprice-'+this.ident+'-name',width: 300}
 		]
 	});
 	chinaPrice.window.UpdateCatalog.superclass.constructor.call(this,config);

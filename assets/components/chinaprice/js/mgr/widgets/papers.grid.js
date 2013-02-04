@@ -12,7 +12,7 @@ chinaPrice.grid.Papers = function(config) {
 		,remoteSort: true
 		,columns: [
 			{header: _('id'),dataIndex: 'id',width: 70, sortable: true}
-			,{header: _('name'),dataIndex: 'name',width: 200, sortable: true}
+			,{header: _('chinaprice.paper_name'),dataIndex: 'name',width: 200, sortable: true}
 		]
 		,tbar: [{
 			text: _('chinaprice.paper_create')
@@ -102,7 +102,7 @@ chinaPrice.window.CreateCatalog = function(config) {
 		,url: chinaPrice.config.connector_url
 		,action: 'mgr/paper/create'
 		,fields: [
-			{xtype: 'textfield',fieldLabel: _('name'),name: 'name',id: 'chinaprice-'+this.ident+'-name',width: 300}
+			{xtype: 'textfield',fieldLabel: _('chinaprice.paper_name'),name: 'name',id: 'chinaprice-'+this.ident+'-name',width: 300}
 		]
 	});
 	chinaPrice.window.CreateCatalog.superclass.constructor.call(this,config);
@@ -123,7 +123,7 @@ chinaPrice.window.UpdateCatalog = function(config) {
 		,action: 'mgr/paper/update'
 		,fields: [
 			{xtype: 'hidden',name: 'id',id: 'chinaprice-'+this.ident+'-id'}
-			,{xtype: 'textfield',fieldLabel: _('name'),name: 'name',id: 'chinaprice-'+this.ident+'-name',width: 300}
+			,{xtype: 'textfield',fieldLabel: _('chinaprice.paper_name'),name: 'name',id: 'chinaprice-'+this.ident+'-name',width: 300}
 		]
 	});
 	chinaPrice.window.UpdateCatalog.superclass.constructor.call(this,config);
