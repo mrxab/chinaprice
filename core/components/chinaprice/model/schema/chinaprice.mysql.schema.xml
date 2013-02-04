@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model package="chinaprice" baseClass="xPDOObject" platform="mysql" defaultEngine="MyISAM" phpdoc-package="chinaprice">
+    <object class="chinaPriceCatalog" table="chinaprice_catalog" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="100" phptype="string" null="false" default="" />
+	<composite alias="Catalog" class="chinaPriceType" local="id" foreign="catalog_id" cardinality="many" owner="local" />
+    </object>    
+
+    <object class="chinaPriceFormat" table="chinaprice_format" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="5" phptype="string" null="false" default="A4" />
+	<aggregate alias="Format" class="chinaPriceType" local="id" foreign="format_id" cardinality="many" owner="local" />
+    </object>    
+
+    <object class="chinaPricePaper" table="chinaprice_paper" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="5" phptype="string" null="false" default="0" />
+	<aggregate alias="Paper" class="chinaPriceType" local="id" foreign="paper_id" cardinality="many" owner="local" />
+    </object>    
+
+    <object class="chinaPriceCover" table="chinaprice_cover" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="50" phptype="string" null="false" default="0" />
+	<aggregate alias="Cover" class="chinaPriceType" local="id" foreign="cover_id" cardinality="many" owner="local" />
+    </object>    
+
+
+    <object class="chinaPriceType" table="chinaprice_type" extends="xPDOSimpleObject">
+        <field key="name" dbtype="varchar" precision="50" phptype="string" null="false" default="" />
+		<field key="catalog_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="" />
+		<field key="format_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="" />
+		<field key="paper_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="" />
+        <field key="cover_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="" />
+	<composite alias="Item" class="chinaPriceItem" local="id" foreign="type_id" cardinality="many" owner="local" />
+	<aggregate alias="Catalogs" class="chinaPriceCatalog" local="catalog_id" foreign="id" cardinality="one" owner="foreign" />
+	<aggregate alias="Formats" class="chinaPriceFormat" local="format_id" foreign="id" cardinality="one" owner="foreign" />
+	<aggregate alias="Prices" class="chinaPricePrice" local="paper_id" foreign="id" cardinality="one" owner="foreign" />
+	<aggregate alias="Covers" class="chinaPriceCover" local="cover_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>    
+
+    <object class="chinaPriceItem" table="chinaprice_item" extends="xPDOSimpleObject">
+		<field key="type_id" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+		<field key="edition" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+		<field key="page" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+		<field key="price" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+	<aggregate alias="TypeItem" class="chinaPriceType" local="type_id" foreign="id" cardinality="one" owner="foreign" />
+    </object>    
+
+</model>
