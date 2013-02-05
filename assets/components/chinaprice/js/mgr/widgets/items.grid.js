@@ -22,13 +22,40 @@ chinaPrice.grid.Items = function(config) {
 			text: _('chinaprice.item_create')
 			,handler: this.createItem
 			,scope: this
-		}]
+		}
+			,{
+				xtype: 'tbspacer'
+			},{
+				xtype: 'textfield',
+				id: 'type-search-filter',
+				emptyText: _('chinaprice.search'),
+				listeners: {
+					'change': { fn: this.search, scope:this },
+					'render': { fn: function(tf) {
+							tf.getEl().addKeyListener(Ext.EventObject.ENTER, function() {
+								this.search(tf);
+							}, this);
+						},
+						scope: this
+					}
+				}
+			}]
 	});
 	chinaPrice.grid.Items.superclass.constructor.call(this,config);
 };
 Ext.extend(chinaPrice.grid.Items,MODx.grid.Grid,{
-	windows: {}
-
+//	windows: {}
+    search: function(tf, nv, ov) {
+        var s = this.getStore();
+        s.baseParams.query = tf.getValue();
+        this.getBottomToolbar().changePage(1);
+        this.refresh();
+    },
+	filterByCategory: function(cb,rec,ri) {
+        this.getStore().baseParams['type_id'] = rec.data['misc_name'];
+        this.getBottomToolbar().changePage(1);
+        this.refresh();
+    }
 	,getMenu: function() {
 		var m = [];
 		m.push({
@@ -37,9 +64,15 @@ Ext.extend(chinaPrice.grid.Items,MODx.grid.Grid,{
 		});
 		m.push('-');
 		m.push({
+			text: _('chinaprice.dublicate')
+			,handler: this.dublicateItem
+		});
+		m.push('-');
+		m.push({
 			text: _('chinaprice.item_remove')
 			,handler: this.removeItem
 		});
+
 		this.addContextMenuItem(m);
 	}
 	
@@ -72,7 +105,20 @@ Ext.extend(chinaPrice.grid.Items,MODx.grid.Grid,{
 		this.windows.updateItem.fp.getForm().setValues(r);
 		this.windows.updateItem.show(e.target);
 	}
-	
+	,dublicateItem: function(btn, e) {
+		MODx.msg.confirm({
+			title: _('chinaprice.dublicate'),
+			text: _('chinaprice.dublicate'),
+			url: this.config.url,
+			params: {
+				action: 'mgr/item/dublicate',
+				id: this.menu.record.id
+			},
+			listeners: {
+				'success': { fn:this.refresh, scope:this }
+			}
+		});
+	}
 	,removeItem: function(btn,e) {
 		if (!this.menu.record) return false;
 		

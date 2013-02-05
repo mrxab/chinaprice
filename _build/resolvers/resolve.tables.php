@@ -22,6 +22,17 @@ if ($object->xpdo) {
 			$manager->createObjectContainer('chinaPriceItem');
 
 			break;
+
+		case xPDOTransport::ACTION_UNINSTALL:
+			$manager->removeObjectContainer('chinaPriceCatalog');
+			$manager->removeObjectContainer('chinaPriceFormat');
+			$manager->removeObjectContainer('chinaPricePaper');
+			$manager->removeObjectContainer('chinaPriceCover');
+			$manager->removeObjectContainer('chinaPriceType');
+			$manager->removeObjectContainer('chinaPriceItem');
+    
+			break;
+
 		case xPDOTransport::ACTION_UPGRADE:
 			break;
 	}

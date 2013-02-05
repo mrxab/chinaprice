@@ -21,6 +21,19 @@ class chinaPriceItemGetListProcessor extends modObjectGetListProcessor {
 			,'cover_name' => 'chinaPriceCover.name'
 
 		));
+
+#		if ($this->getProperty('sort',null)=='misc_name') {
+#			$c->sortby('type_id','DESC');
+#		}
+
+
+		if ($query = $this->getProperty('query',null)) {
+			$queryWhere = array(
+				'type_id:' => $query
+			);
+			$c->where($queryWhere);
+		}
+
 		$c->leftJoin('chinaPriceType','chinaPriceType','chinaPriceType.id = chinaPriceItem.type_id');
 		$c->leftJoin('chinaPriceCatalog','chinaPriceCatalog','chinaPriceCatalog.id = chinaPriceType.catalog_id');
 		$c->leftJoin('chinaPriceFormat','chinaPriceFormat','chinaPriceFormat.id = chinaPriceType.format_id');
