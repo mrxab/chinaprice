@@ -39,6 +39,20 @@
 		<field key="edition" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
 		<field key="page" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
 		<field key="price" dbtype="int" precision="10" attributes="unsigned" phptype="integer" null="false" default="0" />
+
+		<index alias="type_id" name="type_id" primary="false" unique="false" type="BTREE">
+			<column key="type_id" length="" collation="A" null="false" />
+		</index>
+		<index alias="edition" name="edition" primary="false" unique="false" type="BTREE">
+			<column key="edition" length="" collation="A" null="false" />
+		</index>
+		<index alias="page" name="page" primary="false" unique="false" type="BTREE">
+			<column key="page" length="" collation="A" null="false" />
+		</index>
+		<index alias="price" name="price" primary="false" unique="false" type="BTREE">
+			<column key="price" length="" collation="A" null="false" />
+		</index>
+
 	<aggregate alias="TypeItem" class="chinaPriceType" local="type_id" foreign="id" cardinality="one" owner="foreign" />
     </object>    
 

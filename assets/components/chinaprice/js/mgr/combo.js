@@ -120,6 +120,7 @@ Ext.reg('chinaprice-combo-cover', chinaPrice.combo.Cover);
 chinaPrice.combo.Type = function(config) {
     config = config || {};
     Ext.applyIf(config, {
+		emptyText: _('chinaprice.type_combo'),
         name: 'type_id',
 		hiddenName: 'type_id',
 		displayField: 'misc_name',

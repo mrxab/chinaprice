@@ -23,39 +23,66 @@ chinaPrice.grid.Items = function(config) {
 			,handler: this.createItem
 			,scope: this
 		}
-			,{
-				xtype: 'tbspacer'
-			},{
-				xtype: 'textfield',
-				id: 'type-search-filter',
-				emptyText: _('chinaprice.search'),
-				listeners: {
-					'change': { fn: this.search, scope:this },
-					'render': { fn: function(tf) {
-							tf.getEl().addKeyListener(Ext.EventObject.ENTER, function() {
-								this.search(tf);
-							}, this);
-						},
-						scope: this
-					}
-				}
-			}]
+		,'->'
+		,{
+            xtype: 'chinaprice-combo-type'
+            ,id: 'vfc'
+            ,listeners: {'select': {fn: this.filterByCategory, scope:this}}
+        }
+		,{
+            xtype: 'textfield'
+            ,id: 'chinaprice-search-filter'
+            ,emptyText: _('chinaprice.item_search')
+            ,listeners: {
+                'change': {fn:this.search,scope:this}
+                ,'render': {fn: function(cmp) {
+                    new Ext.KeyMap(cmp.getEl(), {
+                        key: Ext.EventObject.ENTER
+                        ,fn: function() {
+                            this.fireEvent('change',this);
+                            this.blur();
+                            return true;
+                        }
+                        ,scope: cmp
+                    });
+                },scope:this}
+            }
+        },{
+            xtype: 'button'
+            ,id: 'modx-filter-clear'
+            ,iconCls:'icon-reload'
+            ,text: _('filter_clear')
+            ,listeners: {
+                'click': {fn: this.clearFilter, scope: this}
+            }
+        }
+		]
 	});
 	chinaPrice.grid.Items.superclass.constructor.call(this,config);
 };
 Ext.extend(chinaPrice.grid.Items,MODx.grid.Grid,{
-//	windows: {}
-    search: function(tf, nv, ov) {
+	windows: {}
+    ,search: function(tf,nv,ov) {
         var s = this.getStore();
         s.baseParams.query = tf.getValue();
         this.getBottomToolbar().changePage(1);
         this.refresh();
-    },
-	filterByCategory: function(cb,rec,ri) {
-        this.getStore().baseParams['type_id'] = rec.data['misc_name'];
-        this.getBottomToolbar().changePage(1);
+    }
+    ,clearFilter: function() {
+    	this.getStore().baseParams = {
+            action: 'mgr/item/getlist'
+            ,'parent': this.config.resource
+    	};
+        Ext.getCmp('chinaprice-search-filter').reset();
+    	this.getBottomToolbar().changePage(1);
         this.refresh();
     }
+    ,filterByCategory: function(cb) {
+		this.getStore().baseParams['category'] = cb.value;
+		this.getBottomToolbar().changePage(1);
+		this.refresh();
+	}
+
 	,getMenu: function() {
 		var m = [];
 		m.push({

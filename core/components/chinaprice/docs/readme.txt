@@ -1,11 +1,9 @@
 --------------------
 chinaPrice
 --------------------
-Version: 1.0.0
-Author: John Doe <john@doe.com>
+Version: 1.1.0
+Author: mrXAB <khrebtov@gmail.com>
 --------------------
 
-A basic Extra for MODx Revolution.
-
 Feel free to suggest ideas/improvements/bugs on GitHub:
-http://github.com/username/chinaPrice/issues
+http://github.com/mrxab/chinaprice/issues

@@ -7,6 +7,7 @@
  */
 $_lang['chinaprice'] = 'Прайс лист на издательство каталога.';
 $_lang['chinaprice.menu_desc'] = 'Прайс лист издательства каталога.';
+$_lang['chinaprice.dublicate'] = 'Сделать копию';
 $_lang['chinaprice.items'] = 'Цены';
 $_lang['chinaprice.item_create'] = 'Новая цена';
 $_lang['chinaprice.item_err_ae'] = 'Цена с таким именем уже существует.';
@@ -24,6 +25,7 @@ $_lang['chinaprice.item_type'] = 'Тип каталога - формат - ти�
 $_lang['chinaprice.item_edition'] = 'Тираж каталога';
 $_lang['chinaprice.item_page'] = 'Количество страниц';
 $_lang['chinaprice.item_price'] = 'Цена каталога';
+$_lang['chinaprice.item_search'] = 'Поиск по цене/стр./тиражу';
 
 $_lang['chinaprice.catalogs'] = 'Каталоги';
 $_lang['chinaprice.catalog_name'] = 'Название каталога';
@@ -106,3 +108,4 @@ $_lang['chinaprice.type_format'] = 'Формат каталога';
 $_lang['chinaprice.type_name'] = 'Имя (Престиж, Эконом, Нищий)';
 $_lang['chinaprice.type_paper'] = 'Качество бумаги страниц';
 $_lang['chinaprice.type_cover'] = 'Тип бумаги обложки';
+$_lang['chinaprice.type_combo'] = 'Сортировать по';

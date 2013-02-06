@@ -1,5 +1,6 @@
 Changelog for chinaPrice.
 
-chinaPrice 1.0.0
+chinaPrice 1.1.0
 ==============
-- Initial release.
+1.1.0- Add data in table and search in Item.
+1.0.0- Initial release.

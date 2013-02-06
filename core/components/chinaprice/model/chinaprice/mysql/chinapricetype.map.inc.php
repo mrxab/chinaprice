@@ -20,7 +20,7 @@ $xpdo_meta_map['chinaPriceType']= array (
     'name' => 
     array (
       'dbtype' => 'varchar',
-      'precision' => '20',
+      'precision' => '50',
       'phptype' => 'string',
       'null' => false,
       'default' => '',

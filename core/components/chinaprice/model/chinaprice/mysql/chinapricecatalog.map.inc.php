@@ -16,7 +16,7 @@ $xpdo_meta_map['chinaPriceCatalog']= array (
     'name' => 
     array (
       'dbtype' => 'varchar',
-      'precision' => '150',
+      'precision' => '100',
       'phptype' => 'string',
       'null' => false,
       'default' => '',
